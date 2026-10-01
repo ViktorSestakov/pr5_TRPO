@@ -13,35 +13,32 @@ namespace ConsoleApp1
         {
             int n, k;
 
-            Console.Write("Введите значение k = ");
-            k = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите число n = ");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write("Введите число k = ");
+            k = int.Parse(Console.ReadLine());
 
             if (k == 0)
             {
-                Console.WriteLine("k не может быть равна нулю!");
+                Console.WriteLine("На 0 делить нельзя.");
                 return;
             }
 
-            for (int i = 0; i < 10; i++)
-            {
-                Console.Write($"Введите значение n{i + 1} = ");
-                n = Convert.ToInt32(Console.ReadLine());
+            int result = 0;
+            int place = 1;
+            int temp = n;
 
-                if (n > 9 || n < 0)
-                {
-                    Console.WriteLine("Введенное вами значение не цифра!");
-                    break;
-                } else
-                {
-                    if (n % k == 0)
-                    {
-                        Console.WriteLine("0");
-                    } else
-                    {
-                        Console.WriteLine($"{n}");
-                    }
-                }
+            while (temp != 0)
+            {
+                int digit = temp % 10;
+                if (digit % k == 0) digit = 0;
+                result += digit * place;
+                place *= 10;
+                temp /= 10;
             }
+
+            Console.WriteLine("Результат: " + result);
         }
     }
 }
